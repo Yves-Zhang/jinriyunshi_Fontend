@@ -22,7 +22,7 @@ export default function TabLayout() {
             <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
           ),
         }}
-      />
+      /> 
       <Tabs.Screen
         name="explore"
         options={{
