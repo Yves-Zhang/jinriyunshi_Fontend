@@ -52,10 +52,7 @@ const YiCard = (props: any) => {
   };
 
   const createShichen = (shichens: any[]) => {
-    console.log(shichens);
-    const shichen = ["子", "丑", "寅", "卯", "辰", "巳"];
     return shichens.map((item: any, index: number) => {
-      console.log();
       return (
         <ThemedView key={index} style={styles.word}>
           {item.ganZhi?.split("").map((item: string, index: number) => {
@@ -108,7 +105,7 @@ const styles = StyleSheet.create({
   yiCard: {
     padding: 16,
     borderRadius: 8,
-    backgroundColor: "#fffdf9",
+    backgroundColor: "#fffdf6",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -120,7 +117,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     marginBottom: 10,
-    backgroundColor: "#fffdf9",
+    backgroundColor: "transparent",
   },
   title: {
     fontSize: 18,

@@ -5,33 +5,43 @@ import {
   StyleSheet,
   ImageBackground,
   Image,
-  Dimensions,
 } from "react-native";
 import DateComponent from "./DateComponent";
-import { getLunar } from "@/api/lunar.ts";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ThemedText } from "@/components/ThemedText";
 import YiCard from "./DayYiJiCard";
 import ShichenYiCard from "./ShichenYiJiCard";
+import { getLunarDayInfo } from "@/utils/lunarTool";
+import { useDispatch, useSelector } from "react-redux";
+import { setLunarInfo } from "@/store/reducers/lunarReducer";
 
 const Home = () => {
-  const [data, setData] = useState({} as any);
-  const [shichenData, setShichenData] = useState({} as any);
+  const dispatch = useDispatch();
+  const lunarInfo = useSelector((state: any) => state.lunarStore.lunarInfo);
 
-  const getLunarInfo = async (date: Date) => {
-    const ret = await getLunar();
-    const { data } = ret;
-    setData(data);
-    setShichenData({
-      indexTimeYi: data.indexTimeYi,
-      indexTimeJi: data.indexTimeJi,
-      shichens: data.shichens,
-    });
-    console.log(ret.data);
+  const shichenData = useMemo(() => {
+    return {
+      indexTimeYi: lunarInfo.indexTimeYi,
+      indexTimeJi: lunarInfo.indexTimeJi,
+      shichens: lunarInfo.shichens,
+    };
+  }
+    , [lunarInfo]);
+
+  const data = useMemo(() => {
+    return lunarInfo;
+  }
+    , [lunarInfo]);
+
+
+
+  const getLunarInfo = () => {
+    const data = getLunarDayInfo(new Date());
+    dispatch(setLunarInfo(data))
   };
 
   useEffect(() => {
-    getLunarInfo(new Date());
+    getLunarInfo();
   }, []);
 
   return (

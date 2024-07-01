@@ -1,5 +1,9 @@
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import Home from "../pages/home";
+import store from "@/store";
+import { setLunarInfo } from "@/store/reducers/lunarReducer";
+
+store.dispatch(setLunarInfo(999));
 
 export default function HomeScreen() {
   return (

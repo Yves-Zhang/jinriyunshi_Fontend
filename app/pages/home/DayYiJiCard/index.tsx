@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   yiCard: {
     padding: 16,
     borderRadius: 8,
-    backgroundColor: "#fffdf9",
+    backgroundColor: "#fffdf6",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     marginBottom: 10,
-    backgroundColor: "#fffdf9",
+    backgroundColor: "transparent",
   },
   title: {
     fontSize: 18,

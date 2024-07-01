@@ -5,6 +5,9 @@ import { Ionicons } from "@expo/vector-icons";
 import moment from "moment";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import 'moment/min/locales.min';
+import { useDispatch } from "react-redux";
+import { getLunarDayInfo } from "@/utils/lunarTool";
+import { setLunarInfo } from "@/store/reducers/lunarReducer";
 
 moment.locale('zh-cn'); // 使用中文
 
@@ -14,6 +17,7 @@ const DateComponent = (props: any) => {
   const [date, setDate] = useState(new Date());
   const [show, setShow] = useState(false);
   const [arrowDirection, setArrowDirection] = useState("down");
+  const dispatch = useDispatch();
 
   const showPicker = () => {
     setShow(true);
@@ -29,6 +33,8 @@ const DateComponent = (props: any) => {
     setDate(date);
     setShow(false);
     setArrowDirection("down");
+    const lunarInfo = getLunarDayInfo(date);
+    dispatch(setLunarInfo(lunarInfo));
   };
 
   return (
